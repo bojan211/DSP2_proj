@@ -5,15 +5,14 @@
 
 void sampleAndHold(const uchar input[], int xSize, int ySize, uchar output[], int newXSize, int newYSize)
 {
-	/* TO DO */
-	double scaleX = ((double)xSize) / newXSize;
-	double scaleY = ((double)ySize) / newYSize;
+	double skaliranje_hor = ((double)xSize) / newXSize;
+	double skaliranje_vert = ((double)ySize) / newYSize;
 	for (int i = 0; i < newXSize; i++)
 	{
 		for (int j = 0; j < newYSize; j++)
 		{
-			int I_za_malu_sliku = floor((i - 1) * scaleX + 1);
-			int J_za_malu_sliku = floor((j - 1) * scaleY + 1);
+			int I_za_malu_sliku = floor((i - 1) * skaliranje_hor + 1);
+			int J_za_malu_sliku = floor((j - 1) * skaliranje_vert + 1);
 			
 			if (I_za_malu_sliku >= xSize) {
 				I_za_malu_sliku = xSize - 1;
@@ -32,17 +31,16 @@ void sampleAndHold(const uchar input[], int xSize, int ySize, uchar output[], in
 
 void bilinearInterpolate(const uchar input[], int xSize, int ySize, uchar output[], int newXSize, int newYSize)
 {
-	/* TO DO */
-	double scaleX = ((double)xSize) / newXSize;
-	double scaleY = ((double)ySize) / newYSize;
+	double skaliranje_hor = ((double)xSize) / newXSize;
+	double skaliranje_vert = ((double)ySize) / newYSize;
 	for (int i = 0; i < newXSize; i++)
 	{
 		for (int j = 0; j < newYSize; j++)
 		{
-			int I_za_malu_sliku = (i)* scaleX;
-			int J_za_malu_sliku = (j)* scaleY;
-			double a = j / scaleY - floor(j / scaleY);
-			double b = i / scaleX - floor(i / scaleX);
+			int I_za_malu_sliku = (i)* skaliranje_hor;
+			int J_za_malu_sliku = (j)* skaliranje_vert;
+			double a = j / skaliranje_vert - floor(j / skaliranje_vert);
+			double b = i / skaliranje_hor - floor(i / skaliranje_hor);
 
 			output[3 * i + j * newXSize * 3] =
 				(1 - a) * (1 - b) * input[3 * I_za_malu_sliku + J_za_malu_sliku * xSize * 3] +
@@ -70,7 +68,6 @@ void bicubicInterpolate(const uchar input[], int xSize, int ySize, uchar output[
 
 void imageSwirl(const uchar input[], int xSize, int ySize, uchar output[], int m, int n, double k1)
 {
-	/* TO DO */
 	for (int i = 0; i < xSize; i++)
 	{
 		for (int j = 0; j < ySize; j++)
@@ -100,7 +97,6 @@ void imageSwirl(const uchar input[], int xSize, int ySize, uchar output[], int m
 
 void imageSwirlBilinear(const uchar input[], int xSize, int ySize, uchar output[], int m, int n, double k1)
 {
-	/* TO DO */
 	for (int i = 0; i < xSize; i++)
 	{
 		for (int j = 0; j < ySize; j++)
